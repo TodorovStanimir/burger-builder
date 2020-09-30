@@ -11,4 +11,4 @@ const layout = (props) => (
     </Auxilliary>
 );
 
-export default layout
+export default layout;
