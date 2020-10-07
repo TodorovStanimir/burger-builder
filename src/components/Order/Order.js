@@ -7,7 +7,7 @@ const Order = (props) => {
     <div className={classes.Order}>
       <p>Ingredients: {
         Object.keys(props.order.ingredients)
-          .map(ing => <span className={classes.Ingredient}>
+          .map(ing => <span key={ing} className={classes.Ingredient}>
             {ing} ({props.order.ingredients[ing]})
             </span>)
       }
