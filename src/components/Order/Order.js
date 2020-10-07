@@ -5,8 +5,14 @@ import classes from './Order.css';
 const Order = (props) => {
   return (
     <div className={classes.Order}>
-      <p>Ingredients: Salad (1)</p>
-      <p>Price: <strong>BGN 5.25</strong></p>
+      <p>Ingredients: {
+        Object.keys(props.order.ingredients)
+          .map(ing => <span className={classes.Ingredient}>
+            {ing} ({props.order.ingredients[ing]})
+            </span>)
+      }
+      </p>
+      <p>Price: <strong>BGN {Number(props.order.price).toFixed(2)}</strong></p>
     </div>
   )
 };

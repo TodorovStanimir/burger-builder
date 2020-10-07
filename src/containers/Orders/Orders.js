@@ -24,7 +24,7 @@ class Orders extends Component {
   render() {
     const orders = this.state.loading
       ? <Spinner />
-      : this.state.orders.map(order => <Order order={order} />)
+      : this.state.orders.map(order => <Order key={order.id} order={order} />)
     return (
       <div>
         {orders}
