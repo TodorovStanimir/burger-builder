@@ -8,11 +8,57 @@ import Input from '../../../components/UI/Input/input';
 
 class ContactData extends Component {
   state = {
-    name: '',
-    email: '',
-    address: {
-      street: '',
-      postalCode: ''
+    orderForm: {
+      name: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Your name',
+        },
+        value: ''
+      },
+      street: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Street',
+        },
+        value: ''
+      },
+      zipCode: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'ZIP Code',
+        },
+        value: ''
+      },
+      country: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Country',
+        },
+        value: ''
+      },
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'Your email',
+        },
+        value: ''
+      },
+      deliveryMethod: {
+        elementType: 'select',
+        elementConfig: {
+          options: [
+            { value: 'fastest', displayValue: 'Fastest' },
+            { value: 'cheapest', displayValue: 'Cheapest' },
+          ],
+        },
+        value: ''
+      }
     },
     loading: false
   }
@@ -23,16 +69,7 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
-      custommer: {
-        name: 'Stanimir',
-        address: {
-          street: 'novaVarna',
-          zipCode: '9010',
-          country: 'Bulgaria'
-        },
-        email: 'test@test.bg'
-      },
-      deliveryMethod: 'takeaway'
+
     }
     axios.post('/orders.json', order)
       .then(response => {
@@ -45,12 +82,18 @@ class ContactData extends Component {
   }
 
   render() {
+    const formElementsArray = Object.keys(this.state.orderForm)
+      .map(key => { return { id: key, config: this.state.orderForm[key] } });
+    console.log(formElementsArray);
     let form = (
       <form>
-        <Input inputtype="input" type="text" label="Name" name="name" placeholder="Your name" />
-        <Input inputtype="input" type="email" label="Email" name="emali" placeholder="Your email" />
-        <Input inputtype="input" type="text" label="Street" name="street" placeholder="Street" />
-        <Input inputtype="input" type="text" label="Postal" name="postal" placeholder="Postal Code" />
+        {formElementsArray.map(formElement => (
+          <Input
+            key={formElement.id}
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value} />
+        ))}
         <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
       </form>
     );
