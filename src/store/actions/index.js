@@ -11,3 +11,10 @@ export {
   // fetchOrdersStart,
   // fetchOrdersFail
 } from './order';
+
+export {
+  authStart,
+  authSuccess,
+  authFail,
+  auth
+} from './auth'
