@@ -23,6 +23,8 @@ export const authFail = (error) => {
   };
 };
 
+
+
 export const auth = (email, password, isSignup) => {
   return dispatch => {
     dispatch(authStart());
@@ -43,7 +45,7 @@ export const auth = (email, password, isSignup) => {
       })
       .catch(error => {
         console.log(error);
-        dispatch(authFail(error));
+        dispatch(authFail(error.response.data.error));
       });
   };
 };
