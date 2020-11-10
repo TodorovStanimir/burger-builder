@@ -9,10 +9,6 @@ class Modal extends Component {
     return nextProps.show !== this.props || nextProps.children !== this.props.children;
   }
 
-  componentWillUpdate() {
-    console.log('[Order Summary] will update')
-  }
-
   render() {
     return <Auxilliary>
       <Backdrop show={this.props.show} clicked={this.props.modalClosed} />

@@ -137,7 +137,7 @@ class ContactData extends Component {
   render() {
     const formElementsArray = Object.keys(this.state.orderForm)
       .map(key => { return { id: key, config: this.state.orderForm[key] } });
-    console.log(formElementsArray);
+
     let form = (
       <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formElement => (
